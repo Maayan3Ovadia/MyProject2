@@ -14,7 +14,6 @@ public class StudentHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_student_home_page);
         Toast.makeText(StudentHomePage.this, "bye", Toast.LENGTH_SHORT).show();
 
-
     }
 
 

@@ -40,7 +40,7 @@
         android:fontFamily="sans-serif-black"
         android:text="בחירת שיעור"
         android:textColor="#0B0B0B"
-        android:textSize="34sp"
+        android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

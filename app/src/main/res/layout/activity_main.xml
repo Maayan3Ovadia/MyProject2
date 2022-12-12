@@ -164,7 +164,7 @@
         android:layout_marginEnd="95dp"
         android:backgroundTint="#041377"
         android:text="מורה"
-        android:onClick="MoveToHome"
+        android:onClick="moveToHome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/StudentButton"

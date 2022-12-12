@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".TeacherHomePage">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="השיעורים היום"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <TableLayout
+        android:layout_width="276dp"
+        android:layout_height="527dp"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="153dp">
+
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
