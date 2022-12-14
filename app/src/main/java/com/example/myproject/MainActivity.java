@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         String mail = etEmail.getText().toString();
         EditText etPhone = findViewById(R.id.editPhone);
         String phone = etPhone.getText().toString();
-        EditText etID = findViewById(R.id.editTextID);
-        String textID = etID.getText().toString();
+     //   EditText etID = findViewById(R.id.editTextID);
+       // String textID = etID.getText().toString();
         EditText etName = findViewById(R.id.editName);
         String name = etEmail.getText().toString();
         EditText etPassword = findViewById(R.id.editPassword);
@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         // this means we need to register
         // stage 1 - register with Authentication of firebase
-        auth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+    {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
             {
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.putExtra("mail",mail);
                     intent.putExtra("phone",phone);
-                    intent.putExtra("textID",textID);
                     intent.putExtra("name",name);
                     intent.putExtra("password",password);
                     intent.putExtra("userName",userName);
@@ -75,18 +75,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        intent.setClass(MainActivity.this, StudentHomePage.class);
+                        intent.setClass(MainActivity.this, StudentRegister.class);
                     }
                     startActivity(intent);
                 }
                 else
                     Toast.makeText(MainActivity.this,"fail " + task.getException(),Toast.LENGTH_SHORT).show();
-
             }
         });
 
-
-        
 
     }
 
