@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="226dp" />
+        tools:layout_editor_absoluteY="190dp" />
 
     <Button
         android:id="@+id/StudentButton"
@@ -45,5 +45,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961" />
+
+    <RadioGroup
+        android:layout_width="156dp"
+        android:layout_height="104dp"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="304dp">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="עשיתי תיאוריה" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="לא עשיתי תיאוריה" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
