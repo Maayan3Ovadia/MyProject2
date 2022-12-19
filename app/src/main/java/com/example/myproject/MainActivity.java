@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,16 +17,29 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // register user with Firebase
+        // authentication
+        FirebaseUser fbUser = auth.getCurrentUser();
+        if(fbUser != null )
+        {
+            moveToActivity();
+        }
+
+
+
     }
 
     public void MoveToHome(View view)
     {
+        // reach here only if first time registered
         EditText etEmail = findViewById(R.id.editEmailText);
         String mail = etEmail.getText().toString();
         EditText etPhone = findViewById(R.id.editPhone);
@@ -40,15 +54,22 @@ public class MainActivity extends AppCompatActivity {
         String userName = etUserName.getText().toString();
         Toast.makeText(this,mail,Toast.LENGTH_SHORT).show();
 
-
-        // register user with Firebase
-        // authentication
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser fbUser = auth.getCurrentUser();
-        if(fbUser != null )
+        SharedPreferences sp = this.getSharedPreferences("details",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        if(view.getId() == R.id.TeacherBotton)
         {
-            moveToActivity();
+
+            editor.putBoolean("isTeacher",true);
+
         }
+        else {
+            editor.putBoolean("isTeacher", false);
+        }
+        editor.apply();
+
+
+
+
 
         // this means we need to register
         // stage 1 - register with Authentication of firebase
@@ -81,13 +102,28 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(MainActivity.this,"fail " + task.getException(),Toast.LENGTH_SHORT).show();
+
             }
         });
 
+        }
 
-    }
+    private void moveToActivity()
+    {
+        // if regsitered -> this means that Sharedpref contains value for isTeracher
+        SharedPreferences sp = this.getSharedPreferences("details",MODE_PRIVATE);
+        boolean isTeacher = sp.getBoolean("isTeacher",true);
 
-    private void moveToActivity() {
+
+        if(isTeacher)
+        {
+
+        }
+        else
+        {
+
+        }
+
     }
 
     public void register(View view)
