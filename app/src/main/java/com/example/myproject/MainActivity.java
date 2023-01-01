@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    //String listview = findViewById<ListView>(R.id.myListView)
+
+
+
 
     public void MoveToHome(View view)
     {

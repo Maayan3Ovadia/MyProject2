@@ -38,11 +38,11 @@
 
     <EditText
         android:id="@+id/editTextStudentAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="252dp"
+        android:layout_height="44dp"
         android:layout_marginTop="164dp"
         android:ems="10"
-        android:hint="כתובת מגורים"
+        android:hint="כתובת מגורים (רחוב, מספר בניין)"
         android:inputType="textPassword"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toTopOf="@+id/StudentButton"
@@ -66,14 +66,12 @@
         app:layout_constraintVertical_bias="0.961" />
 
     <RadioGroup
-        android:layout_width="158dp"
         android:id="@+id/radioGroup"
-        android:layout_height="117dp"
-        android:layout_marginTop="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/StudentButton"
+        android:layout_width="170dp"
+        android:layout_height="121dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextStudentAdress">
+        tools:layout_editor_absoluteY="363dp">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -89,5 +87,14 @@
             android:layout_height="wrap_content"
             android:text="לא עשיתי תיאוריה" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*להוסיף בחירת עיר*"
+        android:textColor="#CC2929"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="553dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
