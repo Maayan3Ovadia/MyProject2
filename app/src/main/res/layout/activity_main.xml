@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,6 @@
     android:background="#E1BCCAF3"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/myListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -135,8 +130,8 @@
         app:layout_constraintVertical_bias="0.947" />
 
     <com.google.android.material.chip.ChipGroup
-        android:layout_width="144dp"
-        android:layout_height="48dp"
+        android:layout_width="138dp"
+        android:layout_height="28dp"
         android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,4 +153,4 @@
             android:text="אוטומט" />
     </com.google.android.material.chip.ChipGroup>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

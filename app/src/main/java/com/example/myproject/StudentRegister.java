@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class StudentRegister extends AppCompatActivity {
 
     @Override
@@ -32,15 +34,39 @@ public class StudentRegister extends AppCompatActivity {
         RadioButton selected=p.findViewById(buttonId);
         String text= (String)selected.getText();
 
+        // info from previous
+        Intent i = getIntent();
+        String email = i.getStringExtra("mail");
+        String phone = i.getStringExtra("phone");
+        String password = i.getStringExtra("password");
+        String userName = i.getStringExtra("userName");
+        String name = i.getStringExtra("name");
+
+        /*
+             intent.putExtra("phone",phone);
+                    intent.putExtra("name",name);
+                    intent.putExtra("password",password);
+                    intent.putExtra("userName",userName);
+
+         */
+
         Toast.makeText(this, "8888"+text, Toast.LENGTH_SHORT).show();
         // read from intent previous data
-        Intent i = getIntent();
-
-        String mail = i.getStringExtra("email");
 
 
         // create student
         // add student to firebase -- teacher name empty
+
+        Student s = new Student(name,userName,password,id,true,adress,0);
+
+        FirebaseFirestore db  = FirebaseFirestore.getInstance();
+
+        db.collection("students").add(s);
+
+
+
+
+
 
     }
 }
