@@ -1,5 +1,6 @@
 package com.example.myproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class StudentRegister extends AppCompatActivity {
@@ -61,7 +65,21 @@ public class StudentRegister extends AppCompatActivity {
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 
-        db.collection("students").add(s);
+        db.collection("students").add(s).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(StudentRegister.this,"upload success",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(StudentRegister.this,StudentHomePage.class);
+                    startActivity(i);
+                }
+                else
+                    Toast.makeText(StudentRegister.this,"upload failed",Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
 
 

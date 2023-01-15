@@ -20,20 +20,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="*להוסיף בחירת עיר*"
-        android:textColor="#CC2929"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="553dp" />
-
     <RadioGroup
-        android:layout_width="90dp"
-        android:layout_height="113dp"
-        tools:layout_editor_absoluteX="310dp"
-        tools:layout_editor_absoluteY="238dp">
+        android:id="@+id/EditRadioGroup"
+        android:layout_width="146dp"
+        android:layout_height="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTCity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -60,8 +54,11 @@
         android:text="חובה תיאוריה לפני תחילת לימוד הנהיגה?"
         android:textColor="#000000"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="181dp" />
+        app:layout_constraintBottom_toTopOf="@+id/TeacherButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView99"
+        app:layout_constraintVertical_bias="0.051" />
 
     <TextView
         android:id="@+id/textView99"
@@ -72,6 +69,51 @@
         android:text="הרשמה כמורה"
         android:textColor="#000000"
         android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/TeacherButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="75dp" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editTextTCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="148dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="City"
+        app:layout_constraintBottom_toTopOf="@+id/TeacherButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.753" />
+
+    <EditText
+        android:id="@+id/editTPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="price"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/TeacherButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTCity" />
+
+    <EditText
+        android:id="@+id/editTMinuts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="minuts"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editTPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTCity"
+        app:layout_constraintVertical_bias="0.461" />
 </androidx.constraintlayout.widget.ConstraintLayout>

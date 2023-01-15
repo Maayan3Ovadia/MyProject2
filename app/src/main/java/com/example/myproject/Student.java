@@ -6,11 +6,12 @@ public class Student
     private String userName;
     private String password;
     private String id;
-    private boolean teoria; //נכון-עשה תיאוריה, לא נכון- לא עשה תיאוריה
+    private boolean teoria; //נכון- עשה תיאוריה, לא נכון- לא עשה תיאוריה
     private String adress;
     private int currentLesson;
 
-    public Student(String name, String userName, String password, String id, boolean teoria, String adress, int currentLesson) {
+    public Student(String name, String userName, String password, String id, boolean teoria, String adress, int currentLesson)
+    {
         this.name = name;
         this.userName = userName;
         this.password = password;
@@ -19,8 +20,6 @@ public class Student
         this.adress = adress;
         this.currentLesson = currentLesson;
     }
-
-
 
     public Student()
     {
