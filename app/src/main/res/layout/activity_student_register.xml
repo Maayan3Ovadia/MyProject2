@@ -12,29 +12,33 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="sans-serif-black"
         android:text="הרשמה כתלמיד"
         android:textColor="#000000"
         android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <EditText
         android:id="@+id/editTextID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="72dp"
         android:ems="10"
         android:hint="תעודת זהות"
         android:inputType="textPassword"
         android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.272" />
 
     <EditText
         android:id="@+id/editTextStudentAdress"
@@ -56,22 +60,22 @@
         android:id="@+id/StudentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:backgroundTint="#041377"
         android:onClick="MoveTtudentHome"
         android:text="הרשמה"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="170dp"
-        android:layout_height="121dp"
+        android:layout_width="188dp"
+        android:layout_height="82dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="363dp">
+        tools:layout_editor_absoluteY="381dp">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -84,7 +88,7 @@
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="21dp"
             android:text="לא עשיתי תיאוריה" />
     </RadioGroup>
 

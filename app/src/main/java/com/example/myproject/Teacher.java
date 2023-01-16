@@ -1,20 +1,26 @@
 package com.example.myproject;
 
-public class Teacher {
+public class Teacher
+{
 
     private String name;
     private String userName;
     private String password;
+    private String email;
+    private String phone;
     private boolean Needteoria;
     private int price;
     private int minutes; //כמה דקות כל שיעור
     private boolean isAuto; //true- the car is automatic, false- הרכב ידני
     private String city;
 
-    public Teacher(String name, String userName, String password, boolean needteoria, int price, int minutes, boolean isAuto, String city) {
+
+    public Teacher(String name, String userName, String password, String email, String phone, boolean needteoria, int price, int minutes, boolean isAuto, String city) {
         this.name = name;
         this.userName = userName;
         this.password = password;
+        this.email = email;
+        this.phone = phone;
         Needteoria = needteoria;
         this.price = price;
         this.minutes = minutes;

@@ -24,11 +24,9 @@ public class StudentRegister extends AppCompatActivity {
         setContentView(R.layout.activity_student_register);
         Toast.makeText(StudentRegister.this, "student", Toast.LENGTH_SHORT).show();
 
-
-
     }
 
-    public void MoveTtudentHome(View view) {
+    public void MoveToStudentRegister(View view) {
         EditText ID = findViewById(R.id.editTextID);
         String id = ID.getText().toString();
         EditText SAdress = findViewById(R.id.editTextStudentAdress);
@@ -51,7 +49,6 @@ public class StudentRegister extends AppCompatActivity {
                     intent.putExtra("name",name);
                     intent.putExtra("password",password);
                     intent.putExtra("userName",userName);
-
          */
 
         Toast.makeText(this, "8888"+text, Toast.LENGTH_SHORT).show();
@@ -61,7 +58,7 @@ public class StudentRegister extends AppCompatActivity {
         // create student
         // add student to firebase -- teacher name empty
 
-        Student s = new Student(name,userName,password,id,true,adress,0);
+        Student s = new Student(name,userName,password, email, phone, id,true,adress,0);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 

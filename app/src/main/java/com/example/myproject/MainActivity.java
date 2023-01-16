@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void MoveToHome(View view)
+    public void moveToRegister(View view)
     {
         // reach here only if first time registered
         EditText etEmail = findViewById(R.id.editEmailText);
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(view.getId() == R.id.TeacherBotton)
                     {
-                        intent.setClass(MainActivity.this,TeacherHomePage.class);
+                        intent.setClass(MainActivity.this, TeacherRegister.class);
                     }
                     else
                     {
@@ -114,19 +114,25 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+        // move to Teacher or Student Activity
     private void moveToActivity()
     {
         // if regsitered -> this means that Sharedpref contains value for isTeracher
         SharedPreferences sp = this.getSharedPreferences("details",MODE_PRIVATE);
         boolean isTeacher = sp.getBoolean("isTeacher",true);
 
-
         if(isTeacher)
         {
+            Intent i = new Intent(this,TeacherHomePage.class);
+            startActivity(i);
 
         }
         else
         {
+            Intent i = new Intent(this,StudentHomePage.class);
+            startActivity(i);
+
 
         }
 

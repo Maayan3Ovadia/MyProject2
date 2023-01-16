@@ -24,19 +24,18 @@ public class TeacherRegister extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_register);
     }
 
-    public void MoveToTeacherHome(View view)
+    public void moveToTeacherRegister(View view)
     {
         EditText TCity = findViewById(R.id.editTextTCity);
         String city = TCity.getText().toString();
         RadioGroup rg = (RadioGroup)findViewById(R.id.EditRadioGroup);
         int buttonId = rg.getCheckedRadioButtonId();
         RadioButton selected = rg.findViewById(buttonId);
-        String text = (String)selected.getText();
+        String text = selected.getText().toString();
         EditText TPrice = findViewById(R.id.editTextTCity);
         int price = Integer.parseInt(TPrice.getText().toString());
         EditText TMinuts = findViewById(R.id.editTMinuts);
         int minuts = Integer.parseInt(TMinuts.getText().toString());
-
 
 
         // info from previous
@@ -48,10 +47,10 @@ public class TeacherRegister extends AppCompatActivity {
         String name = i.getStringExtra("name");
 
 
-        // create student
-        // add student to firebase -- teacher name empty
+        // create teacher
+        // add teacher to firebase
 
-        Teacher t = new Teacher(name,userName,password,true, price, minuts ,true, city);
+        Teacher t = new Teacher(name,userName,password, email, phone, true, price, minuts ,true, city);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 
@@ -66,7 +65,6 @@ public class TeacherRegister extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(TeacherRegister.this,"upload failed",Toast.LENGTH_SHORT).show();
-
             }
         });
     }

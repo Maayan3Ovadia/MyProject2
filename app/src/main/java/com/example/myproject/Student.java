@@ -5,16 +5,21 @@ public class Student
     private String name;
     private String userName;
     private String password;
+    private String email;
+    private String phone;
     private String id;
     private boolean teoria; //נכון- עשה תיאוריה, לא נכון- לא עשה תיאוריה
     private String adress;
     private int currentLesson;
+    private Teacher teacher;
 
-    public Student(String name, String userName, String password, String id, boolean teoria, String adress, int currentLesson)
+    public Student(String name, String userName, String password, String email, String phone, String id, boolean teoria, String adress, int currentLesson)
     {
         this.name = name;
         this.userName = userName;
         this.password = password;
+        this.email = email;
+        this.phone = phone;
         this.id = id;
         this.teoria = teoria;
         this.adress = adress;
