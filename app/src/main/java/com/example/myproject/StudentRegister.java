@@ -58,7 +58,7 @@ public class StudentRegister extends AppCompatActivity {
         // create student
         // add student to firebase -- teacher name empty
 
-        Student s = new Student(name,userName,password, email, phone, id,true,adress,0);
+        Student s = new Student(name, userName, password, email, phone, id, true, adress ,0, 4);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 

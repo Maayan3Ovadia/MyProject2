@@ -19,14 +19,14 @@ public class StudentsList extends AppCompatActivity {
 
         for (int i = 0; i < 50; i++)
         {
-            students.add(new Student("name", "userName", "password", "email", "phone", "id", true, "adress", 2 ));
+            students.add(new Student("name", "userName", "password", "email", "phone", "id", true, "adress", 0, 3));
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_suudents);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-       // RecyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
-       // ChatAdapter chatAdaptert = new ChatAdapter(students);
+       StudentAdapter studentAdapter = new StudentAdapter(students);
 
     }
 

@@ -12,8 +12,9 @@ public class Student
     private String adress;
     private int currentLesson;
     private Teacher teacher;
+    private int nextLesson;
 
-    public Student(String name, String userName, String password, String email, String phone, String id, boolean teoria, String adress, int currentLesson)
+    public Student(String name, String userName, String password, String email, String phone, String id, boolean teoria, String adress, int currentLesson, int nextLesson)
     {
         this.name = name;
         this.userName = userName;
@@ -24,6 +25,7 @@ public class Student
         this.teoria = teoria;
         this.adress = adress;
         this.currentLesson = currentLesson;
+        this.nextLesson = nextLesson;
     }
 
     public Student()
@@ -85,5 +87,13 @@ public class Student
 
     public void setCurrentLesson(int currentLesson) {
         this.currentLesson = currentLesson;
+    }
+
+    public int getNextLesson() {
+        return nextLesson;
+    }
+
+    public void setNextLesson(int nextLesson) {
+        this.nextLesson = nextLesson;
     }
 }
