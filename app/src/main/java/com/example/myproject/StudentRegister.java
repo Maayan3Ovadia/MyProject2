@@ -26,15 +26,16 @@ public class StudentRegister extends AppCompatActivity {
 
     }
 
-    public void MoveToStudentRegister(View view) {
+    public void MoveToStudentHome(View view) {
         EditText ID = findViewById(R.id.editTextID);
         String id = ID.getText().toString();
         EditText SAdress = findViewById(R.id.editTextStudentAdress);
         String adress = SAdress.getText().toString();
         RadioGroup p = (RadioGroup)findViewById(R.id.radioGroup);
         int buttonId= p.getCheckedRadioButtonId();
-        RadioButton selected=p.findViewById(buttonId);
+        RadioButton selected =p.findViewById(buttonId);
         String text= (String)selected.getText();
+
 
         // info from previous
         Intent i = getIntent();

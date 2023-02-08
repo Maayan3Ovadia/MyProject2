@@ -24,18 +24,18 @@ public class TeacherRegister extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_register);
     }
 
-    public void moveToTeacherRegister(View view)
+    public void MoveToTeacherHome(View view)
     {
         EditText TCity = findViewById(R.id.editTextTCity);
         String city = TCity.getText().toString();
-        RadioGroup rg = (RadioGroup)findViewById(R.id.EditRadioGroup);
-        int buttonId = rg.getCheckedRadioButtonId();
-        RadioButton selected = rg.findViewById(buttonId);
-        String text = selected.getText().toString();
-        EditText TPrice = findViewById(R.id.editTextTCity);
-        int price = Integer.parseInt(TPrice.getText().toString());
-        EditText TMinuts = findViewById(R.id.editTMinuts);
-        int minuts = Integer.parseInt(TMinuts.getText().toString());
+        //RadioGroup rg = (RadioGroup)findViewById(R.id.EditRadioGroup);
+        //int buttonId = rg.getCheckedRadioButtonId();
+        //RadioButton selected = rg.findViewById(buttonId);
+        //String text = (String)selected.getText();
+        //EditText TPrice = findViewById(R.id.editTextTCity);
+        //int price = Integer.parseInt(TPrice.getText().toString());
+        //EditText TMinuts = findViewById(R.id.editTMinuts);
+        //int minuts = Integer.parseInt(TMinuts.getText().toString());
 
 
         // info from previous
@@ -46,11 +46,12 @@ public class TeacherRegister extends AppCompatActivity {
         String userName = i.getStringExtra("userName");
         String name = i.getStringExtra("name");
 
+        //Toast.makeText(this, "teacher", Toast.LENGTH_SHORT).show();
 
         // create teacher
         // add teacher to firebase
-
-        Teacher t = new Teacher(name,userName,password, email, phone, true, price, minuts ,true, city);
+                                                                                           //price,        minutes
+        Teacher t = new Teacher(name,userName,password, email, phone, true, 100, 40 ,true, city);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 

@@ -15,10 +15,5 @@ public class TeacherHomePage extends AppCompatActivity
         setContentView(R.layout.activity_teacher_home_page);
     }
 
-    public void MoveToTeacherHome(View view)
-    {
-        Toast.makeText(TeacherHomePage.this, "hello", Toast.LENGTH_SHORT).show();
-
-    }
 
 }

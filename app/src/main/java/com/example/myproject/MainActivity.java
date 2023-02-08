@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         // register user with Firebase
         // authentication
         FirebaseUser fbUser = auth.getCurrentUser();
-        if(fbUser != null )
-        {
-            moveToActivity();
-        }
+        //if(fbUser != null )
+        //{
+          //  moveToActivity();
+        //}
 
 
 

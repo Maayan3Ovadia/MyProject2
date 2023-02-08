@@ -11,7 +11,8 @@ public class Student
     private boolean teoria; //נכון- עשה תיאוריה, לא נכון- לא עשה תיאוריה
     private String adress;
     private int currentLesson;
-    private Teacher teacher;
+    private String teacherName;
+    private String teacherPhone;
     private int nextLesson;
 
     public Student(String name, String userName, String password, String email, String phone, String id, boolean teoria, String adress, int currentLesson, int nextLesson)
@@ -26,11 +27,29 @@ public class Student
         this.adress = adress;
         this.currentLesson = currentLesson;
         this.nextLesson = nextLesson;
+        this.teacherName="";
+        this.teacherPhone="";
     }
 
     public Student()
     {
 
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public String getTeacherPhone() {
+        return teacherPhone;
+    }
+
+    public void setTeacherPhone(String teacherPhone) {
+        this.teacherPhone = teacherPhone;
     }
 
     public String getName() {
