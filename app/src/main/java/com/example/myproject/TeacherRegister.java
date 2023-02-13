@@ -62,6 +62,7 @@ public class TeacherRegister extends AppCompatActivity {
                 {
                     Toast.makeText(TeacherRegister.this,"upload success",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(TeacherRegister.this,TeacherHomePage.class);
+
                     startActivity(i);
                 }
                 else

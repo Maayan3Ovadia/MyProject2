@@ -29,7 +29,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         Student currentStudent = students.get(position);
         holder.nameTextView.setText(currentStudent.getName());
-        holder.NextLTextView.setText(currentStudent.getNextLesson());
+        holder.NextLTextView.setText("" + currentStudent.getNextLesson());
     }
 
     @Override

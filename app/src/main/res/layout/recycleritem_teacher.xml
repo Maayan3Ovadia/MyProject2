@@ -5,10 +5,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/teacher_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="teacher_name"
-        tools:layout_editor_absoluteX="331dp"
+        android:text="שם המורה"
+        tools:layout_editor_absoluteX="306dp"
         tools:layout_editor_absoluteY="31dp" />
+
+    <TextView
+        android:id="@+id/lesson_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מחיר שיעור "
+        tools:layout_editor_absoluteX="324dp"
+        tools:layout_editor_absoluteY="82dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

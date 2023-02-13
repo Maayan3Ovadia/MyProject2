@@ -21,11 +21,31 @@ public class Teacher
         this.password = password;
         this.email = email;
         this.phone = phone;
-        Needteoria = needteoria;
+        this.Needteoria = needteoria;
         this.price = price;
         this.minutes = minutes;
         this.isAuto = isAuto;
         this.city = city;
+    }
+
+
+    public Teacher() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getName() {
