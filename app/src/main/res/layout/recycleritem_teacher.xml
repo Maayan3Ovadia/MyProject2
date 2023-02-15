@@ -8,15 +8,22 @@
         android:id="@+id/teacher_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:text="שם המורה"
-        tools:layout_editor_absoluteX="306dp"
-        tools:layout_editor_absoluteY="31dp" />
+        android:textColor="#070707"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="324dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
         android:id="@+id/lesson_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:text="מחיר שיעור "
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="82dp" />
+        android:textColor="#040303"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="40dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
