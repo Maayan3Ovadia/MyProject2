@@ -63,10 +63,10 @@ public class TeacherHomePage extends AppCompatActivity
     private void getMyStudents() {
      // get my students from firebase!
 
-        String phoneNumer = me.getPhone();
+        String phoneNumber = me.getPhone();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("students").whereEqualTo("teacherPhone",phoneNumer).get()
+        db.collection("students").whereEqualTo("teacherPhone",phoneNumber).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
