@@ -33,7 +33,8 @@ public class StudentHomePage extends AppCompatActivity {
     }
 
     private void getMyDetails() {
-        /*String city = FirebaseAuth.getInstance().getCurrentUser().get
+        String city = me.getAdress();
+        Toast.makeText(this, ""+city, Toast.LENGTH_SHORT).show();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -47,7 +48,7 @@ public class StudentHomePage extends AppCompatActivity {
 
                         }
                     }
-                });*/
+                });
     }
 
     private void getTeachers() {

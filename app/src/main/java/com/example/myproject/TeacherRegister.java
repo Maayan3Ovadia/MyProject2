@@ -26,19 +26,21 @@ public class TeacherRegister extends AppCompatActivity {
 
     public void MoveToTeacherHome(View view)
     {
-        EditText TCity = findViewById(R.id.editTextTCity);
+        EditText TCity = (EditText)findViewById(R.id.editTextTCity);
         String city = TCity.getText().toString();
-        //RadioGroup rg = (RadioGroup)findViewById(R.id.EditRadioGroup);
-        //int buttonId = rg.getCheckedRadioButtonId();
-        //RadioButton selected = rg.findViewById(buttonId);
-        //String text = (String)selected.getText();
-        //EditText TPrice = findViewById(R.id.editTextTCity);
-        //int price = Integer.parseInt(TPrice.getText().toString());
-        //EditText TMinuts = findViewById(R.id.editTMinuts);
-        //int minuts = Integer.parseInt(TMinuts.getText().toString());
 
+        RadioGroup rg = (RadioGroup)findViewById(R.id.EditRadioGroup);
+        int buttonId = rg.getCheckedRadioButtonId();
+        Toast.makeText(this, ""+buttonId, Toast.LENGTH_SHORT).show();
 
-        // info from previous
+        RadioButton selected = rg.findViewById(buttonId);
+        String text = (String)selected.getText();
+        EditText TPrice = findViewById(R.id.editTextTCity);
+        int price = Integer.parseInt(TPrice.getText().toString());
+        EditText TMinuts = findViewById(R.id.editTMinuts);
+        int minuts = Integer.parseInt(TMinuts.getText().toString());
+
+        //from previous
         Intent i = getIntent();
         String email = i.getStringExtra("mail");
         String phone = i.getStringExtra("phone");

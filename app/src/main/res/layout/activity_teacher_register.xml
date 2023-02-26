@@ -36,14 +36,16 @@
             android:scrollbarStyle="outsideInset"
             android:selectAllOnFocus="false"
             android:text="כן"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:checked="false"/>
 
         <RadioButton
             android:id="@+id/radioButton5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="לא"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:checked="false"/>
     </RadioGroup>
 
     <TextView

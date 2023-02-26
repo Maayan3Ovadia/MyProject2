@@ -29,12 +29,20 @@ public class StudentRegister extends AppCompatActivity {
     public void MoveToStudentHome(View view) {
         EditText ID = findViewById(R.id.editTextID);
         String id = ID.getText().toString();
-        EditText SAdress = findViewById(R.id.editTextStudentAdress);
-        String adress = SAdress.getText().toString();
+
+        EditText SAddress = findViewById(R.id.editTextStudentAddress);
+        String address = SAddress.getText().toString();
+
         RadioGroup p = (RadioGroup)findViewById(R.id.radioGroup);
         int buttonId= p.getCheckedRadioButtonId();
         RadioButton selected =p.findViewById(buttonId);
         String text= (String)selected.getText();
+
+        boolean teoria = false;
+        if(text.equalsIgnoreCase("עשיתי תיאוריה"))
+            teoria = true;
+        Toast.makeText(StudentRegister.this, ""+address, Toast.LENGTH_SHORT).show();
+
 
 
         // info from previous
@@ -52,14 +60,14 @@ public class StudentRegister extends AppCompatActivity {
                     intent.putExtra("userName",userName);
          */
 
-        Toast.makeText(this, "8888"+text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "88888"+text, Toast.LENGTH_SHORT).show();
         // read from intent previous data
 
 
         // create student
         // add student to firebase -- teacher name empty
 
-        Student s = new Student(name, userName, password, email, phone, id, true, adress ,0, 4);
+        Student s = new Student(name, userName, password, email, phone, id, teoria, address ,0, 4);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 
