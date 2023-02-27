@@ -35,12 +35,10 @@ public class TeacherHomePage extends AppCompatActivity
 
         getMyDetails();
 
-
-
     }
 
     private void getMyDetails() {
-        // EmAIL
+        // EmAILgru. vfbx, ahsur
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -57,7 +55,6 @@ public class TeacherHomePage extends AppCompatActivity
                         }
                     }
                 });
-
     }
 
     private void getMyStudents() {

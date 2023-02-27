@@ -23,7 +23,6 @@ public class StudentRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_register);
         Toast.makeText(StudentRegister.this, "student", Toast.LENGTH_SHORT).show();
-
     }
 
     public void MoveToStudentHome(View view) {
@@ -38,11 +37,11 @@ public class StudentRegister extends AppCompatActivity {
         RadioButton selected =p.findViewById(buttonId);
         String text= (String)selected.getText();
 
+
         boolean teoria = false;
         if(text.equalsIgnoreCase("עשיתי תיאוריה"))
             teoria = true;
         Toast.makeText(StudentRegister.this, ""+address, Toast.LENGTH_SHORT).show();
-
 
 
         // info from previous
@@ -60,9 +59,8 @@ public class StudentRegister extends AppCompatActivity {
                     intent.putExtra("userName",userName);
          */
 
-        Toast.makeText(this, "88888"+text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "88888 "+text, Toast.LENGTH_SHORT).show();
         // read from intent previous data
-
 
         // create student
         // add student to firebase -- teacher name empty
@@ -78,11 +76,11 @@ public class StudentRegister extends AppCompatActivity {
                 {
                     Toast.makeText(StudentRegister.this,"upload success",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(StudentRegister.this,StudentHomePage.class);
+                    i.putExtra("address",address);
                     startActivity(i);
                 }
                 else
                     Toast.makeText(StudentRegister.this,"upload failed",Toast.LENGTH_SHORT).show();
-
 
             }
         });

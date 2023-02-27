@@ -28,12 +28,12 @@ public class StudentHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_page);
 
-        getMyDetails();
+        getTeachers();
 
     }
-
+/*
     private void getMyDetails() {
-        String city = me.getAdress();
+        String city =getIntent().getStringExtra("address");// me.getAdress();
         Toast.makeText(this, ""+city, Toast.LENGTH_SHORT).show();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -51,10 +51,12 @@ public class StudentHomePage extends AppCompatActivity {
                 });
     }
 
+
+ */
     private void getTeachers() {
         // get teachers from firebase
 
-        String mycity = me.getAdress(); //העיר של התלמיד שנכנס
+        String mycity = getIntent().getStringExtra("address");//me.getAdress(); //העיר של התלמיד שנכנס
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("teachers").whereEqualTo("city", mycity).get()
@@ -64,14 +66,15 @@ public class StudentHomePage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 teachers.add(document.toObject(Teacher.class));
+
                             }
 
-                            RecyclerView recyclerView = findViewById(R.id.recycler_choose_teacher);
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StudentHomePage.this);
-                            recyclerView.setLayoutManager(layoutManager);
+                                RecyclerView recyclerView = findViewById(R.id.recycler_choose_teacher);
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StudentHomePage.this);
+                                recyclerView.setLayoutManager(layoutManager);
 
-                            TeacherAdapter teacherAdapter = new TeacherAdapter(teachers);
-                            recyclerView.setAdapter(teacherAdapter);
+                                TeacherAdapter teacherAdapter = new TeacherAdapter(teachers);
+                                recyclerView.setAdapter(teacherAdapter);
 
 
                         } else

@@ -31,7 +31,6 @@ public class TeacherRegister extends AppCompatActivity {
 
         RadioGroup rg = (RadioGroup)findViewById(R.id.EditRadioGroup);
         int buttonId = rg.getCheckedRadioButtonId();
-        Toast.makeText(this, ""+buttonId, Toast.LENGTH_SHORT).show();
 
         RadioButton selected = rg.findViewById(buttonId);
         String text = (String)selected.getText();
@@ -39,6 +38,9 @@ public class TeacherRegister extends AppCompatActivity {
         int price = Integer.parseInt(TPrice.getText().toString());
         EditText TMinuts = findViewById(R.id.editTMinuts);
         int minuts = Integer.parseInt(TMinuts.getText().toString());
+
+        Toast.makeText(this, "bu "+minuts, Toast.LENGTH_SHORT).show();
+
 
         //from previous
         Intent i = getIntent();
@@ -52,7 +54,6 @@ public class TeacherRegister extends AppCompatActivity {
 
         // create teacher
         // add teacher to firebase
-                                                                                           //price,        minutes
         Teacher t = new Teacher(name,userName,password, email, phone, true, 100, 40 ,true, city);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
