@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
      //   EditText etID = findViewById(R.id.editTextID);
        // String textID = etID.getText().toString();
         EditText etName = findViewById(R.id.editName);
-        String name = etEmail.getText().toString();
+        String name = etName.getText().toString();
         EditText etPassword = findViewById(R.id.editPassword);
         String password = etPassword.getText().toString();
         EditText etUserName = findViewById(R.id.editUserName);

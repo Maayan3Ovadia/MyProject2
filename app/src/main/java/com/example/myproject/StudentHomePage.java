@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class StudentHomePage extends AppCompatActivity {
 
-    ArrayList<Teacher> teachers = new ArrayList<Teacher>();
     Student me;
 
     @Override
@@ -28,7 +27,6 @@ public class StudentHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_page);
 
-        getTeachers();
 
     }
 /*
@@ -53,36 +51,7 @@ public class StudentHomePage extends AppCompatActivity {
 
 
  */
-    private void getTeachers() {
-        // get teachers from firebase
 
-        String mycity = getIntent().getStringExtra("address");//me.getAdress(); //העיר של התלמיד שנכנס
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        db.collection("teachers").whereEqualTo("city", mycity).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                teachers.add(document.toObject(Teacher.class));
-
-                            }
-
-                                RecyclerView recyclerView = findViewById(R.id.recycler_choose_teacher);
-                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StudentHomePage.this);
-                                recyclerView.setLayoutManager(layoutManager);
-
-                                TeacherAdapter teacherAdapter = new TeacherAdapter(teachers);
-                                recyclerView.setAdapter(teacherAdapter);
-
-
-                        } else
-                            Toast.makeText(StudentHomePage.this, "FAILED", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-    }
 
 
 }
