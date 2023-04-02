@@ -34,10 +34,10 @@ public class TeacherRegister extends AppCompatActivity {
 
         RadioButton selected = rg.findViewById(buttonId);
         String text = (String)selected.getText();
-        EditText TPrice = findViewById(R.id.editTextTCity);
-        int price = Integer.parseInt(TPrice.getText().toString());
+        EditText TPrice = findViewById(R.id.editTPrice);
+        int price = Integer.valueOf(TPrice.getText().toString());
         EditText TMinuts = findViewById(R.id.editTMinuts);
-        int minuts = Integer.parseInt(TMinuts.getText().toString());
+        int minuts = Integer.valueOf(TMinuts.getText().toString());
 
         Toast.makeText(this, "bu "+minuts, Toast.LENGTH_SHORT).show();
 
@@ -54,7 +54,7 @@ public class TeacherRegister extends AppCompatActivity {
 
         // create teacher
         // add teacher to firebase
-        Teacher t = new Teacher(name,userName,password, email, phone, true, 100, 40 ,true, city);
+        Teacher t = new Teacher(name,userName,password, email, phone, true, price, minuts ,true, city);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 

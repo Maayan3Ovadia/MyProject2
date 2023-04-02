@@ -29,17 +29,15 @@ public class MainActivity extends AppCompatActivity {
         // register user with Firebase
         // authentication
         FirebaseUser fbUser = auth.getCurrentUser();
-        //if(fbUser != null )
-        //{
-          //  moveToActivity();
-        //}
-
+  //     if(fbUser != null )
+   //     {
+   //        moveToActivity();
+   //     }
 
 
     }
 
     //String listview = findViewById<ListView>(R.id.myListView)
-
 
 
 
@@ -64,11 +62,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         if(view.getId() == R.id.TeacherBotton)
         {
-
             editor.putBoolean("isTeacher",true);
-
         }
-        else {
+        else
+        {
             editor.putBoolean("isTeacher", false);
         }
         editor.apply();

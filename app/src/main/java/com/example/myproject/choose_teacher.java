@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -19,6 +23,9 @@ import java.util.ArrayList;
 public class choose_teacher extends AppCompatActivity {
 
     ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+
+    private FirebaseAuth auth =  FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -47,13 +54,34 @@ public class choose_teacher extends AppCompatActivity {
                         //    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(choose_teacher.this);
                             recyclerView.setLayoutManager(new LinearLayoutManager(choose_teacher.this));
 
-                            TeacherAdapter teacherAdapter = new TeacherAdapter(teachers);
+                            TeacherAdapter teacherAdapter = new TeacherAdapter(teachers,choose_teacher.this);
                             recyclerView.setAdapter(teacherAdapter);
+
+
 
                         } else
                             Toast.makeText(choose_teacher.this, "FAILED", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+    }
+
+    public void updateStudentTeacherName(String teacherName,String teacherPhone)
+    {
+        // get student from firebase
+
+        String email  = auth.getCurrentUser().getEmail();
+
+        SharedPreferences sp =choose_teacher.this.getSharedPreferences("details",MODE_PRIVATE);
+
+        String ref = sp.getString("reference","");
+        DocumentReference doc = db.document(ref);
+        doc.update("teacherPhone",teacherPhone);
+        doc.update("teacherNamne",teacherName);
+
+
+         //update
+ //setTeacherName
 
     }
 }

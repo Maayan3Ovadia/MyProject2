@@ -31,6 +31,30 @@ public class Student
         this.teacherPhone="";
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public Student()
     {
 
@@ -92,13 +116,7 @@ public class Student
         this.teoria = teoria;
     }
 
-    public String getAdress() {
-        return address;
-    }
 
-    public void setAdress(String adress) {
-        this.address = adress;
-    }
 
     public int getCurrentLesson() {
         return currentLesson;
