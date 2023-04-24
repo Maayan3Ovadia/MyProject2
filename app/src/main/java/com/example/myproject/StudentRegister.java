@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -74,6 +75,15 @@ public class StudentRegister extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 if(task.isSuccessful())
                 {
+                    String ref = task.getResult().getPath();
+
+                    SharedPreferences sp =StudentRegister.this.getSharedPreferences("details",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+
+                    editor.putString("reference",ref);
+                    editor.apply();
+
+
                     Toast.makeText(StudentRegister.this,"upload success",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(StudentRegister.this,choose_teacher.class);
                     i.putExtra("address",address);
