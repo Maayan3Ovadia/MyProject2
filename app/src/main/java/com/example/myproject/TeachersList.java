@@ -27,7 +27,7 @@ public class TeachersList extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        TeacherAdapter teacherAdapter = new TeacherAdapter(teachers);
+       // TeacherAdapter teacherAdapter = new TeacherAdapter(teachers);
 
     }
 

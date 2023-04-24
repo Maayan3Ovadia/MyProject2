@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         // register user with Firebase
         // authentication
         FirebaseUser fbUser = auth.getCurrentUser();
-        //if(fbUser != null )
-        //{
-          //  moveToActivity();
-        //}
+        if(fbUser != null )
+        {
+           moveToActivity();
+        }
 
 
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         String mail = etEmail.getText().toString();
         EditText etPhone = findViewById(R.id.editPhone);
         String phone = etPhone.getText().toString();
-     //   EditText etID = findViewById(R.id.editTextID);
+     // EditText etID = findViewById(R.id.editTextID);
        // String textID = etID.getText().toString();
         EditText etName = findViewById(R.id.editName);
         String name = etName.getText().toString();

@@ -34,7 +34,7 @@ public class TeacherRegister extends AppCompatActivity {
 
         RadioButton selected = rg.findViewById(buttonId);
         String text = (String)selected.getText();
-        EditText TPrice = findViewById(R.id.editTextTCity);
+        EditText TPrice = findViewById(R.id.editTPrice);
         int price = Integer.parseInt(TPrice.getText().toString());
         EditText TMinuts = findViewById(R.id.editTMinuts);
         int minuts = Integer.parseInt(TMinuts.getText().toString());

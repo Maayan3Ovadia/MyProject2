@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:scrollbarFadeDuration="300">
 
     <TextView
         android:id="@+id/teacher_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="שם המורה"
         android:textColor="#070707"
@@ -23,7 +24,7 @@
         android:id="@+id/lesson_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-black"
         android:text="מחיר שיעור "
         android:textColor="#040303"

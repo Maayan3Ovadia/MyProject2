@@ -14,8 +14,11 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
 
     private ArrayList<Teacher> teachers;
 
-    public TeacherAdapter(ArrayList<Teacher> teachers) {
+    private choose_teacher cTeacher;
+
+    public TeacherAdapter(ArrayList<Teacher> teachers,choose_teacher cteacher) {
         this.teachers = teachers;
+        cTeacher = cteacher;
     }
 
     @NonNull
@@ -30,6 +33,13 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
         Teacher currentTeacher = teachers.get(position);
         holder.nameTextView.setText(currentTeacher.getName());
         holder.priceTextView.setText("" + currentTeacher.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cTeacher.showTeacherDialog(currentTeacher,position);
+            }
+        });
     }
 
     @Override
@@ -48,5 +58,4 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
             priceTextView = itemView.findViewById(R.id.lesson_price);
         }
     }
-
 }
