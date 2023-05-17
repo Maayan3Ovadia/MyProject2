@@ -47,11 +47,7 @@ public class StudentHomePage extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-
- */
-
+    }*/
 
 
 }

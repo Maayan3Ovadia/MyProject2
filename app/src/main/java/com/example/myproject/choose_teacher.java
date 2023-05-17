@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -128,14 +129,23 @@ public class choose_teacher extends AppCompatActivity {
                 {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         document.getReference().update("teacherName",currentTeacher.getName());
-                        document.getReference().update("teacherPhone",currentTeacher.getPhone());
+                        document.getReference().update("teacherPhone",currentTeacher.getPhone()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent i = new Intent(choose_teacher.this,StudentHomePage.class);
+                                startActivity(i);
+                            }
+                        });
 
                     }
 
                             }
                 }
             });
-
+        //להראות לתלמיד רשימה של המורים רק אוטומוט/ידני
+        //אם תלמיד רוצה ללמוד ידני/אוטומט, ברשימת המורים יהיו רק מורים שמלמדים על ידני
+        //מורים לפי עיר
+        //מורים שמקבלים לפי התיאוריה
 
     }
 }

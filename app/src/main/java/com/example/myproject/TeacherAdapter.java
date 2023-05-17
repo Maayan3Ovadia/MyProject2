@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherViewHolder> {
 
@@ -28,6 +29,21 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
         return new TeacherAdapter.TeacherViewHolder(teacherView);
     }
 
+
+    @Override
+    public void onBindViewHolder(@NonNull TeacherViewHolder holder,int position) {
+        Teacher currentTeacher = teachers.get(position);
+        holder.nameTextView.setText(currentTeacher.getName());
+        holder.priceTextView.setText("" + currentTeacher.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cTeacher.showTeacherDialog(currentTeacher,position);
+            }
+        });
+    }
+    /*
     @Override
     public void onBindViewHolder(@NonNull TeacherViewHolder holder, int position) {
         Teacher currentTeacher = teachers.get(position);
@@ -41,6 +57,8 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
             }
         });
     }
+
+     */
 
     @Override
     public int getItemCount() {
