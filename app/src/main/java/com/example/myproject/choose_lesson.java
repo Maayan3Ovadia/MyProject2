@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Student__Lesson extends AppCompatActivity {
+public class choose_lesson extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

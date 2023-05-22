@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -77,7 +78,7 @@ public class TeacherHomePage extends AppCompatActivity
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TeacherHomePage.this);
                             recyclerView.setLayoutManager(layoutManager);
 
-                            StudentAdapter studentAdapter = new StudentAdapter(students);
+                            StudentAdapter studentAdapter = new StudentAdapter(students,TeacherHomePage.this);
                             recyclerView.setAdapter(studentAdapter);
 
 
@@ -94,6 +95,19 @@ public class TeacherHomePage extends AppCompatActivity
 
 
     }
+
+    public void showStudentDetails(Student s,int position)
+    {
+
+        Intent i = new Intent(this,ActivityStudentDetails.class);
+        i.putExtra("student",s);
+        startActivity(i);
+
+
+
+
+    }
+
 
 
 }

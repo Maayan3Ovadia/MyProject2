@@ -13,9 +13,12 @@ import java.util.ArrayList;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder>{
 
     private ArrayList<Student> students;
+    private TeacherHomePage tHomePage;
 
-    public StudentAdapter(ArrayList<Student> students) {
+
+    public StudentAdapter(ArrayList<Student> students,TeacherHomePage tHomePage) {
         this.students = students;
+        this.tHomePage = tHomePage;
     }
 
     @NonNull
@@ -30,6 +33,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         Student currentStudent = students.get(position);
         holder.nameTextView.setText(currentStudent.getName());
         holder.NextLTextView.setText("" + currentStudent.getNextLesson());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tHomePage.showStudentDetails(currentStudent,position);
+            }
+        });
     }
 
     @Override
