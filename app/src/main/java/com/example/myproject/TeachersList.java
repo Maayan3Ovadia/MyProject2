@@ -20,7 +20,7 @@ public class TeachersList extends AppCompatActivity {
 
         for (int i = 0; i < 50; i++)
         {
-            teachers.add(new Teacher("name","userName","password", "email", "phone", true, 100, 40 ,true, "city"));
+            teachers.add(new Teacher("name","userName","password", "email", "phone", true, 100, 40 ,true, "city",10));
         }
 
         RecyclerView recyclerView = findViewById(R.id.recycler_choose_teacher);

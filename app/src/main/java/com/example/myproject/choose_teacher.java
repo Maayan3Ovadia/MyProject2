@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -81,8 +82,8 @@ public class choose_teacher extends AppCompatActivity {
 
                 Toast.makeText(choose_teacher.this, currentTeacher.getName(),Toast.LENGTH_SHORT).show();
                 dialog.cancel();
-
                 setTeacherInFirebase(currentTeacher);
+
 
 
             }
@@ -130,8 +131,16 @@ public class choose_teacher extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         document.getReference().update("teacherName",currentTeacher.getName());
                         document.getReference().update("teacherPhone",currentTeacher.getPhone()).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+                                // save teaCHER PHONE IN SHARED PREFERENCES
+                                SharedPreferences sp = choose_teacher.this.getSharedPreferences("details",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("teacherPhone", currentTeacher.getPhone());
+                                editor.apply();
+
                                 Intent i = new Intent(choose_teacher.this,StudentHomePage.class);
                                 startActivity(i);
                             }

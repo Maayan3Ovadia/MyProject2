@@ -54,7 +54,7 @@ public class TeacherRegister extends AppCompatActivity {
 
         // create teacher
         // add teacher to firebase
-        Teacher t = new Teacher(name,userName,password, email, phone, true, 100, 40 ,true, city);
+        Teacher t = new Teacher(name,userName,password, email, phone, true, 100, 40 ,true, city,10);
 
         FirebaseFirestore db  = FirebaseFirestore.getInstance();
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +28,11 @@ public class StudentHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_page);
 
+    }
 
+    public void moveToChooseLesson(View view) {
+        Intent intent = new Intent(this, choose_lesson.class);
+        startActivity(intent);
     }
 /*
     private void getMyDetails() {

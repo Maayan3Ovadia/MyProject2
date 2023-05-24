@@ -13,9 +13,10 @@ public class Teacher
     private int minutes; //כמה דקות כל שיעור
     private boolean isAuto; //true- the car is automatic, false- הרכב ידני
     private String city;
+    private int lessonsNumInDay;
 
-
-    public Teacher(String name, String userName, String password, String email, String phone, boolean needteoria, int price, int minutes, boolean isAuto, String city) {
+/////////////להוסיף מס שיעורים למורה
+    public Teacher(String name, String userName, String password, String email, String phone, boolean needteoria, int price, int minutes, boolean isAuto, String city,int lessonsNumInDay) {
         this.name = name;
         this.userName = userName;
         this.password = password;
@@ -26,6 +27,7 @@ public class Teacher
         this.minutes = minutes;
         this.isAuto = isAuto;
         this.city = city;
+        this.lessonsNumInDay = 10; //ברירת מחדל 10 שיעורים
     }
 
 

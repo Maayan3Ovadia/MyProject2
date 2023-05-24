@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
            moveToActivity();
         }
 
-
-
     }
 
     //String listview = findViewById<ListView>(R.id.myListView)
