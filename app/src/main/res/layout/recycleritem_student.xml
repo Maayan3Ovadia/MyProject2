@@ -26,7 +26,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="שיעור הבא עוד 3 ימים"
+        android:text="שיעור הבא"
         android:textColor="#040404"
         app:layout_constraintEnd_toEndOf="@+id/student_name"
         app:layout_constraintStart_toStartOf="parent"

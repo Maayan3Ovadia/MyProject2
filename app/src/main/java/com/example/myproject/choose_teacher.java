@@ -66,34 +66,30 @@ public class choose_teacher extends AppCompatActivity {
     public void showTeacherDialog(Teacher currentTeacher, int position)
     {
 
-        String title = "Teacher ___";
-        String teacherDescription = currentTeacher.getName() + "\\" + currentTeacher.getPrice();
+        //String teacherDescription = currentTeacher.getPrice() + "₪" + "\n" + currentTeacher.getMinutes();
 
-        // alert diaolog
+        // alert dialog
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        builder.setMessage(teacherDescription);
+        builder.setTitle(""+currentTeacher.getName());
+        builder.setMessage("האם ברצונך לבחור במורה זה?");
 
         builder.setCancelable(false);
-        builder.setPositiveButton("Confirm",new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("בחר",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // upload to firebase///
 
-                Toast.makeText(choose_teacher.this, currentTeacher.getName(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(choose_teacher.this, currentTeacher.getName(), Toast.LENGTH_SHORT).show();
                 dialog.cancel();
                 setTeacherInFirebase(currentTeacher);
 
-
-
             }
             }
-
                 );
-        builder.setNegativeButton("Other",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+        builder.setNegativeButton("בחר מורה אחר",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
                         dialog.cancel();
-
                     }
                 }
 

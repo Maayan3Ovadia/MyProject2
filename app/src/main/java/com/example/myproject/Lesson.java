@@ -9,7 +9,7 @@ public class Lesson
     private Date start;
     private Date finish;
     private int lessonDuration;
-    private String studentName;
+    private String studentEmail;
 
     public Date getFinish() {
         return finish;
@@ -19,12 +19,12 @@ public class Lesson
         this.finish = finish;
     }
 
-    public Lesson(String teacherPhone, Date date, Date start, int lessonDuration, String studentName) {
+    public Lesson(String teacherPhone, Date date, Date start, int lessonDuration, String studentEmail) {
         this.teacherPhone = teacherPhone;
         this.date = date;
         this.start = start;
         this.lessonDuration = lessonDuration;
-        this.studentName = studentName;
+        this.studentEmail = studentEmail;
     }
     public Lesson(){}
     public String getTeacherPhone() {
@@ -43,8 +43,8 @@ public class Lesson
         return lessonDuration;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getStudentEmail() {
+        return studentEmail;
     }
 
     public void setTeacherPhone(String teacherPhone) {
@@ -63,7 +63,7 @@ public class Lesson
         this.lessonDuration = lessonDuration;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
     }
 }
