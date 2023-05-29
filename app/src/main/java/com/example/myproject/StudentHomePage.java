@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -22,6 +25,12 @@ import java.util.ArrayList;
 public class StudentHomePage extends AppCompatActivity {
 
     Student me;
+    //private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    //firebaseFirestore.collection("students").
+
+    //String s = me.getTeacherName();
+    //DocumentReference docRef = firebaseFirestore.collection("students").document("SF");
+    //docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,23 @@ public class StudentHomePage extends AppCompatActivity {
         Intent intent = new Intent(this, choose_lesson.class);
         startActivity(intent);
     }
+
+/*
+        public TextView nameTextView;
+        public TextView priceTextView;
+        public TextView lessonTime;
+        public Button choose;
+
+        public TeacherViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nameTextView = itemView.findViewById(R.id.teacher_name);
+            priceTextView = itemView.findViewById(R.id.lesson_price);
+            lessonTime = itemView.findViewById(R.id.lesson_time);
+            choose = itemView.findViewById(R.id.choose_button);
+        }
+
+*/
+
 /*
     private void getMyDetails() {
         String city =getIntent().getStringExtra("address");// me.getAdress();

@@ -75,13 +75,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                         if (task.isSuccessful()){
                             holder.taken.setVisibility(View.VISIBLE);
                             holder.choose.setVisibility(View.GONE);
-
                         }
-
                     }
                 });
-
-
             }
         });
     }

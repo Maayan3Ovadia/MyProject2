@@ -1,10 +1,12 @@
 package com.example.myproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.Toast;
@@ -91,8 +93,22 @@ public class choose_lesson extends AppCompatActivity {
         getLessons();
     }
 
+    /*
+    public boolean isDateSelectable(Date date) {
+        Calendar cal = Calendar.getInstance();
+        boolean isSelecteable=true;
+        cal.setTime(date);
+        int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
 
-    public void getLessons() {
+        //disable if weekend
+        if(dayOfWeek==Calendar.SATURDAY)
+            isSelecteable=false;
+        return isSelecteable;
+    }
+*/
+
+    public void getLessons()
+    {
         firebaseFirestore.collection("lessons")
                 .whereEqualTo("teacherPhone", MainActivity.student.getTeacherPhone())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -110,6 +126,34 @@ public class choose_lesson extends AppCompatActivity {
                 });
     }
 
+    /*
+    public void showLessonDialog(Lesson currentLesson, int position)
+    {
+
+        // alert dialog
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle(""+currentLesson.getStart());
+        builder.setMessage("האם ברצונך לבחור שעה זו?");
+
+        builder.setCancelable(false);
+        builder.setPositiveButton("בחר",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // upload to firebase///
+                        dialog.cancel();
+                    }
+                }
+        );
+        builder.setNegativeButton("בחר שעה אחרת",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        dialog.cancel();
+                    }
+                }
+
+        );
+
+}*/
 }
 
 

@@ -38,7 +38,7 @@
         android:layout_width="365dp"
         android:layout_height="300dp"
         android:layout_marginTop="8dp"
-        android:background="#40FBFBFB"
+        android:background="#17FBFBFB"
         android:maxDate="31/07/2023"
         android:minDate="01/01/2023"
         android:visibility="visible"
