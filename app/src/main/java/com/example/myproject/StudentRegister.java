@@ -85,6 +85,8 @@ public class StudentRegister extends AppCompatActivity {
 
 
                     Toast.makeText(StudentRegister.this,"upload success",Toast.LENGTH_SHORT).show();
+
+                    MainActivity.student = s;
                     Intent i = new Intent(StudentRegister.this,choose_teacher.class);
                     i.putExtra("address",address);
                     startActivity(i);

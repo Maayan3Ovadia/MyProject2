@@ -68,9 +68,12 @@ public class choose_lesson extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
+
         // Get current date and time
         Calendar calendar = Calendar.getInstance();
         Date currentDate = date;
+
+
 
         // Set initial start time
         calendar.set(Calendar.HOUR_OF_DAY, 6);
@@ -90,22 +93,21 @@ public class choose_lesson extends AppCompatActivity {
             startTime = calendar.getTime();
             lesson.setFinish(startTime);
         }
-        getLessons();
+        if ((currentDate.getDay()+1) == 7) {
+            clearRecyclerView();
+            Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
+        }
+        else
+            getLessons();
     }
 
-    /*
-    public boolean isDateSelectable(Date date) {
-        Calendar cal = Calendar.getInstance();
-        boolean isSelecteable=true;
-        cal.setTime(date);
-        int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
 
-        //disable if weekend
-        if(dayOfWeek==Calendar.SATURDAY)
-            isSelecteable=false;
-        return isSelecteable;
+    public void clearRecyclerView()
+    {
+        RecyclerView lessons = findViewById(R.id.recycler_lessons);
+        lessons.setAdapter(null);
     }
-*/
+
 
     public void getLessons()
     {
@@ -119,12 +121,47 @@ public class choose_lesson extends AppCompatActivity {
                             recyclerView(lessonList, lessons);
                             SimpleDateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy/HH:mm");
 
-                            Toast.makeText(choose_lesson.this, "" + timeFormat.format(lessons.get(0).getStart()), Toast.LENGTH_SHORT).show();
+                      //      Toast.makeText(choose_lesson.this, "" + timeFormat.format(lessons.get(0).getStart()), Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(choose_lesson.this, "FAILED", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+
+
+
+
+
+
+
+
+    //אי אפשר לבחור את יום שבת
+    //if((currentDate.getDay()+1)==7)
+    //    Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
+
+    //Toast.makeText(this, ""+ (currentDate.getDay()+1) , Toast.LENGTH_SHORT).show();
+
+    //if(calendar.get(calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
+    //{
+
+    //Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
+    //}
+
+
+
+    /*
+    public boolean isDateSelectable(Date date) {
+        Calendar cal = Calendar.getInstance();
+        boolean isSelecteable=true;
+        cal.setTime(date);
+        int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
+        //disable if saturday
+        if(dayOfWeek==Calendar.SATURDAY)
+            isSelecteable=false;
+        return isSelecteable;
+    }
+     */
 
     /*
     public void showLessonDialog(Lesson currentLesson, int position)

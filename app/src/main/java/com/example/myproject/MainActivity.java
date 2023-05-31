@@ -31,12 +31,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // register user with Firebase
-        // authentication
+        // register user with Firebase   authentication
         fbUser = auth.getCurrentUser();
-        if (fbUser != null) {
-            moveToActivity();
-        }
+//        if (fbUser != null) {
+//            moveToActivity();
+//        }
 
     }
 
@@ -90,12 +89,13 @@ public class MainActivity extends AppCompatActivity {
                     if (view.getId() == R.id.TeacherBotton) {
                         intent.setClass(MainActivity.this, TeacherRegister.class);
                     } else {
+
+
                         intent.setClass(MainActivity.this, StudentRegister.class);
                     }
                     startActivity(intent);
                 } else
                     Toast.makeText(MainActivity.this, "fail " + task.getException(), Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -116,24 +116,27 @@ public class MainActivity extends AppCompatActivity {
             firebaseFirestore.collection("students").whereEqualTo("email", fbUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful())
+                    if (task.isSuccessful()) {
                         student = task.getResult().toObjects(Student.class).get(0);
+                        Intent i = new Intent(MainActivity.this, StudentHomePage.class);
+                        startActivity(i);
+
+                    }
                 }
             });
-            Intent i = new Intent(this, StudentHomePage.class);
-            startActivity(i);
 
         }
 
     }
 
-    public void register(View view) {
+    public void register(View view)
+    {
 
     }
 
 
-    public void registerAsTeacher(View view) {
-
+    public void registerAsTeacher(View view)
+    {
 
     }
 }
