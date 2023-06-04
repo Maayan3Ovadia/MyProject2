@@ -1,12 +1,10 @@
 package com.example.myproject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.Toast;
@@ -14,10 +12,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -80,8 +76,8 @@ public class choose_lesson extends AppCompatActivity {
         calendar.set(Calendar.MINUTE, 00);
         Date startTime = calendar.getTime();
 
-        // Generate 10 lessons
-        for (int i = 0; i < 10; i++) {
+        // Generate 19 lessons
+        for (int i = 0; i < 19; i++) {
             // Create Lesson object and add to the list
             Lesson lesson = new Lesson();
             lesson.setStart(startTime);
@@ -93,7 +89,7 @@ public class choose_lesson extends AppCompatActivity {
             startTime = calendar.getTime();
             lesson.setFinish(startTime);
         }
-        if ((currentDate.getDay()+1) == 7) {
+        if ((currentDate.getDay() + 1) == 7) {
             clearRecyclerView();
             Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
         }

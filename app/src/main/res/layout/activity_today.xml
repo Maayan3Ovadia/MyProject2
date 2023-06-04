@@ -7,18 +7,41 @@
     tools:context=".Today">
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:text="השיעורים היום"
         android:textColor="#090909"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="647dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="83dp" />
+        android:id="@+id/RecyclerTodayLesson"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/calendarView2"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="365dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="8dp"
+        android:background="#3B067FDD"
+        android:maxDate="31/07/2023"
+        android:minDate="01/01/2023"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
