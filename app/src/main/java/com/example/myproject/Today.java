@@ -10,7 +10,10 @@ import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -55,9 +58,8 @@ public class Today extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         lessons.setLayoutManager(layoutManager);
         TodayAdapter todayAdapter = new TodayAdapter(lessons_array, teacherLessons);
-        todayAdapter.setStudentEmail(MainActivity.student.getEmail());
-        todayAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
-
+        //todayAdapter.setStudentEmail(MainActivity.student.getEmail());
+       //todayAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
         lessons.setAdapter(todayAdapter);
     }
 
@@ -96,7 +98,22 @@ public class Today extends AppCompatActivity {
             Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
         }
         else
-            getLessons();
+            getTeacherDetails();
+    }
+
+    private void getTeacherDetails() {
+        FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
+        String email = fbUser.getEmail();
+        firebaseFirestore.collection("teachers").whereEqualTo("email",email).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Teacher teacher = queryDocumentSnapshots.getDocuments().get(0).toObject(Teacher.class);
+                        getLessons(teacher);
+
+                    }
+                });
+
     }
 
 //
@@ -107,10 +124,10 @@ public class Today extends AppCompatActivity {
 //    }
 
 
-    public void getLessons()
+    public void getLessons(Teacher teacher)
     {
         firebaseFirestore.collection("lessons")
-                .whereEqualTo("teacherPhone", MainActivity.student.getTeacherPhone())
+                .whereEqualTo("teacherPhone", teacher.getPhone())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

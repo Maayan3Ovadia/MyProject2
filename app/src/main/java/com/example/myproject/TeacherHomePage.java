@@ -109,5 +109,8 @@ public class TeacherHomePage extends AppCompatActivity
     }
 
 
-
+    public void MoveToToday(View view) {
+        Intent intent = new Intent(this,Today.class);
+        startActivity(intent);
+    }
 }

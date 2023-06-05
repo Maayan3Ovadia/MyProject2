@@ -24,6 +24,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     private ArrayList<Lesson> teacherLessons;
     private String teacherPhone;
     private String studentEmail;
+    private String studentName;
+
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     public void setTeacherPhone(String teacherPhone) {
@@ -69,6 +71,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             public void onClick(View view) {
                 lesson.setTeacherPhone(teacherPhone);
                 lesson.setStudentEmail(studentEmail);
+                lesson.setStudentName(studentName);
                 firebaseFirestore.collection("lessons").add(lesson).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -85,6 +88,10 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     @Override
     public int getItemCount() {
         return lessons.size();
+    }
+
+    public void setStudentName(String name) {
+            this.studentName =name;
     }
 
     public static class LessonViewHolder extends RecyclerView.ViewHolder {

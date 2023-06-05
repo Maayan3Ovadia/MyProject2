@@ -10,6 +10,7 @@ public class Lesson
     private Date finish;
     private int lessonDuration;
     private String studentEmail;
+    private String studentName;
 
     public Date getFinish() {
         return finish;
@@ -19,12 +20,13 @@ public class Lesson
         this.finish = finish;
     }
 
-    public Lesson(String teacherPhone, Date date, Date start, int lessonDuration, String studentEmail) {
+    public Lesson(String teacherPhone, Date date, Date start, int lessonDuration, String studentEmail, String studentName) {
         this.teacherPhone = teacherPhone;
         this.date = date;
         this.start = start;
         this.lessonDuration = lessonDuration;
         this.studentEmail = studentEmail;
+        this.studentName = studentName;
     }
     public Lesson(){}
     public String getTeacherPhone() {
@@ -47,6 +49,10 @@ public class Lesson
         return studentEmail;
     }
 
+    public String getStudentName() {
+        return studentName;
+    }
+
     public void setTeacherPhone(String teacherPhone) {
         this.teacherPhone = teacherPhone;
     }
@@ -65,5 +71,9 @@ public class Lesson
 
     public void setStudentEmail(String studentEmail) {
         this.studentEmail = studentEmail;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }

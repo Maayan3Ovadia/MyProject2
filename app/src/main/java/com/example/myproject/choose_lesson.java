@@ -55,6 +55,8 @@ public class choose_lesson extends AppCompatActivity {
         LessonAdapter lessonAdapter = new LessonAdapter(lessons_array, teacherLessons);
         lessonAdapter.setStudentEmail(MainActivity.student.getEmail());
         lessonAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
+        lessonAdapter.setStudentName(MainActivity.student.getName());
+
 
         lessons.setAdapter(lessonAdapter);
     }

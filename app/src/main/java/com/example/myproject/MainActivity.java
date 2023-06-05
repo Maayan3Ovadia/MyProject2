@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         // register user with Firebase   authentication
         fbUser = auth.getCurrentUser();
-//        if (fbUser != null) {
-//            moveToActivity();
-//        }
+        if (fbUser != null) {
+            moveToActivity();
+        }
 
     }
 

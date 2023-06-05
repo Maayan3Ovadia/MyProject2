@@ -55,11 +55,48 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
     @Override
     public void onBindViewHolder(@NonNull TodayAdapter.TodayViewHolder holder, int position)
     {
-        Lesson currentLesson = lessons.get(position);
+        Lesson lesson = lessons.get(position);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat timeFormat_month_day_year = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (int i = 0; i < teacherLessons.size(); i++) {
+            String start = timeFormat.format(teacherLessons.get(i).getStart());
+            String date = timeFormat_month_day_year.format(teacherLessons.get(i).getDate());
+            if (start.equals(timeFormat.format(lesson.getStart())) && date.equals(timeFormat_month_day_year.format(lesson.getDate()))) {
+                //show lesson details-> student name...
+                holder.studentName.setVisibility(View.VISIBLE);
+                holder.studentName.setText(teacherLessons.get(i).getStudentName());
+
+                holder.cancel.setVisibility(View.VISIBLE);
 
 
-
+            }
+        }
+        holder.time.setText(timeFormat.format(lesson.getStart()) + "-" + timeFormat.format(lesson.getFinish()));
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lesson.setTeacherPhone(teacherPhone);
+                lesson.setStudentEmail(studentEmail);
+                firebaseFirestore.collection("lessons").add(lesson).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+                            holder.studentName.setVisibility(View.VISIBLE);
+                            holder.cancel.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }
+        });
     }
+
+        //search teacher lessons
+        // show time
+        // if taken ->
+        //    show lesson details-> student name...
+        // modify choose to cancel
+
 
     @Override
     public int getItemCount() {
@@ -68,14 +105,16 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
 
     public static class TodayViewHolder extends RecyclerView.ViewHolder {
         public TextView time;
-        public Button choose;
+        public Button cancel;
         public View taken;
+        public TextView studentName;
 
         public TodayViewHolder(@NonNull View itemView) {
             super(itemView);
-            time = itemView.findViewById(R.id.time);
-            choose = itemView.findViewById(R.id.choose);
+            time = itemView.findViewById(R.id.time2);
+            cancel = itemView.findViewById(R.id.cancel_button);
             taken = itemView.findViewById(R.id.taken);
+            studentName = itemView.findViewById(R.id.todayStudentName);
         }
     }
 }
