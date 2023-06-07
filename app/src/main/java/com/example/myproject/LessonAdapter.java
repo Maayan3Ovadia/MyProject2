@@ -25,6 +25,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     private String teacherPhone;
     private String studentEmail;
     private String studentName;
+    private choose_lesson lessonActivity;
 
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -36,9 +37,10 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         this.studentEmail = studentEmail;
     }
 
-    public LessonAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons) {
+    public LessonAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons,choose_lesson l) {
         this.lessons = lessons;
         this.teacherLessons = teacherLessons;
+        this.lessonActivity = l;
     }
 
     @NonNull
@@ -78,6 +80,10 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                         if (task.isSuccessful()){
                             holder.taken.setVisibility(View.VISIBLE);
                             holder.choose.setVisibility(View.GONE);
+
+                            LessonAdapter.this.lessonActivity.setAlarm(lesson);
+
+
                         }
                     }
                 });

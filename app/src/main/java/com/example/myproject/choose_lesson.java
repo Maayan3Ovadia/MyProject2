@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ public class choose_lesson extends AppCompatActivity {
     private Date hour;
     ArrayList<Teacher> lessons = new ArrayList<Teacher>();
     private ArrayList<Lesson> lessonList;
+    private final int ONE_HOUR = 60*60*1000;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
@@ -52,7 +57,7 @@ public class choose_lesson extends AppCompatActivity {
         RecyclerView lessons = findViewById(R.id.recycler_lessons);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         lessons.setLayoutManager(layoutManager);
-        LessonAdapter lessonAdapter = new LessonAdapter(lessons_array, teacherLessons);
+        LessonAdapter lessonAdapter = new LessonAdapter(lessons_array, teacherLessons,this);
         lessonAdapter.setStudentEmail(MainActivity.student.getEmail());
         lessonAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
         lessonAdapter.setStudentName(MainActivity.student.getName());
@@ -126,12 +131,46 @@ public class choose_lesson extends AppCompatActivity {
                 });
     }
 
+    public void setAlarm(Lesson lesson)
+    {
+        // get date from lesson
+        // intent with broadcast
+        // pending intent -> future use of the intent by system
+        // alarm manager -> set time according to lesson
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast (
+                this.getApplicationContext(), 123, intent, 0);
+        AlarmManager alarmManager = (AlarmManager)  getSystemService(ALARM_SERVICE);
+
+        Date d = lesson.getDate();
+        Date s = lesson.getStart();
+        int start = s.getHours();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.clear();
+
+        calendar.set(Calendar.YEAR,d.getYear());
+        calendar.set(Calendar.MONTH,d.getMonth());
+        calendar.set(Calendar.DAY_OF_MONTH,d.getDay());
+        calendar.set(Calendar.HOUR_OF_DAY,d.getHours());
+        calendar.set(Calendar.MINUTE,d.getMinutes());
 
 
 
 
+      //  calendar.set(d.getYear(),d.getMonth(),d.getDay(),start,s.getMinutes());
 
 
+    //    alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+      //          SystemClock.elapsedRealtime() +
+        //                5* 1000, pendingIntent);
+
+
+
+           alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+    }
 
 
     //אי אפשר לבחור את יום שבת
