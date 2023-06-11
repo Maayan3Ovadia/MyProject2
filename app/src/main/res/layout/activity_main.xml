@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="שם"
+        android:hint=" שם מלא"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editUserName"
         app:layout_constraintEnd_toEndOf="parent"

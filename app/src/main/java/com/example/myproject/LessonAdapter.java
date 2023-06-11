@@ -37,7 +37,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         this.studentEmail = studentEmail;
     }
 
-    public LessonAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons,choose_lesson l) {
+    public LessonAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons, choose_lesson l) {
         this.lessons = lessons;
         this.teacherLessons = teacherLessons;
         this.lessonActivity = l;
@@ -74,16 +74,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
                 lesson.setTeacherPhone(teacherPhone);
                 lesson.setStudentEmail(studentEmail);
                 lesson.setStudentName(studentName);
-                firebaseFirestore.collection("lessons").add(lesson).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                firebaseFirestore.collection("lessons").document(lesson.getLessonId()).set(lesson).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if (task.isSuccessful()){
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
                             holder.taken.setVisibility(View.VISIBLE);
                             holder.choose.setVisibility(View.GONE);
-
-                            LessonAdapter.this.lessonActivity.setAlarm(lesson);
-
-
                         }
                     }
                 });
@@ -97,7 +93,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     }
 
     public void setStudentName(String name) {
-            this.studentName =name;
+        this.studentName = name;
     }
 
     public static class LessonViewHolder extends RecyclerView.ViewHolder {

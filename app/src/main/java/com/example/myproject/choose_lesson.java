@@ -28,7 +28,7 @@ public class choose_lesson extends AppCompatActivity {
     private Date hour;
     ArrayList<Teacher> lessons = new ArrayList<Teacher>();
     private ArrayList<Lesson> lessonList;
-    private final int ONE_HOUR = 60*60*1000;
+    private final int ONE_HOUR = 60 * 60 * 1000;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
@@ -57,7 +57,7 @@ public class choose_lesson extends AppCompatActivity {
         RecyclerView lessons = findViewById(R.id.recycler_lessons);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         lessons.setLayoutManager(layoutManager);
-        LessonAdapter lessonAdapter = new LessonAdapter(lessons_array, teacherLessons,this);
+        LessonAdapter lessonAdapter = new LessonAdapter(lessons_array, teacherLessons, this);
         lessonAdapter.setStudentEmail(MainActivity.student.getEmail());
         lessonAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
         lessonAdapter.setStudentName(MainActivity.student.getName());
@@ -75,7 +75,6 @@ public class choose_lesson extends AppCompatActivity {
         // Get current date and time
         Calendar calendar = Calendar.getInstance();
         Date currentDate = date;
-
 
 
         // Set initial start time
@@ -99,21 +98,18 @@ public class choose_lesson extends AppCompatActivity {
         if ((currentDate.getDay() + 1) == 7) {
             clearRecyclerView();
             Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
-        }
-        else
+        } else
             getLessons();
     }
 
 
-    public void clearRecyclerView()
-    {
+    public void clearRecyclerView() {
         RecyclerView lessons = findViewById(R.id.recycler_lessons);
         lessons.setAdapter(null);
     }
 
 
-    public void getLessons()
-    {
+    public void getLessons() {
         firebaseFirestore.collection("lessons")
                 .whereEqualTo("teacherPhone", MainActivity.student.getTeacherPhone())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -124,52 +120,59 @@ public class choose_lesson extends AppCompatActivity {
                             recyclerView(lessonList, lessons);
                             SimpleDateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy/HH:mm");
 
-                      //      Toast.makeText(choose_lesson.this, "" + timeFormat.format(lessons.get(0).getStart()), Toast.LENGTH_SHORT).show();
+                            //      Toast.makeText(choose_lesson.this, "" + timeFormat.format(lessons.get(0).getStart()), Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(choose_lesson.this, "FAILED", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    public void setAlarm(Lesson lesson)
-    {
+    public void setAlarm(Lesson lesson) {
         // get date from lesson
         // intent with broadcast
         // pending intent -> future use of the intent by system
         // alarm manager -> set time according to lesson
 
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast (
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this.getApplicationContext(), 123, intent, 0);
-        AlarmManager alarmManager = (AlarmManager)  getSystemService(ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         Date d = lesson.getDate();
         Date s = lesson.getStart();
         int start = s.getHours();
 
+        String res = d.toString();
+        String[] dateInString = res.split(" ");
+
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.clear();
-
-        calendar.set(Calendar.YEAR,d.getYear());
-        calendar.set(Calendar.MONTH,d.getMonth());
-        calendar.set(Calendar.DAY_OF_MONTH,d.getDay());
-        calendar.set(Calendar.HOUR_OF_DAY,d.getHours());
-        calendar.set(Calendar.MINUTE,d.getMinutes());
 
 
+        calendar.set(Calendar.YEAR, Integer.valueOf(dateInString[dateInString.length - 1]));
+        calendar.set(Calendar.MONTH, Integer.valueOf(6));
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.valueOf(dateInString[2]));
 
 
-      //  calendar.set(d.getYear(),d.getMonth(),d.getDay(),start,s.getMinutes());
+        calendar.set(Calendar.HOUR_OF_DAY, s.getHours());
+        calendar.set(Calendar.MINUTE, s.getMinutes());
 
 
-    //    alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-      //          SystemClock.elapsedRealtime() +
+        //  calendar.set(d.getYear(),d.getMonth(),d.getDay(),start,s.getMinutes());
+
+
+        //    alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+        //          SystemClock.elapsedRealtime() +
         //                5* 1000, pendingIntent);
 
 
+        alarmManager.setAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME, calendar.getTimeInMillis() - System.currentTimeMillis() - 140 * 60 * 1000, pendingIntent);
 
-           alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() - 1000 * 60 * 170, pendingIntent);
+
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10 * 1000, pendingIntent);
+
     }
 
 

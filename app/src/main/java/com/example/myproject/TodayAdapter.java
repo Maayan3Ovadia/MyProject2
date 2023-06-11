@@ -1,10 +1,12 @@
 package com.example.myproject;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +49,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
     @NonNull
     @Override
     public TodayAdapter.TodayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       // inflate
+        // inflate
         // return the view created
         View lessonView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_today, parent, false);
         //הלייאוט של כל שורה
@@ -53,8 +57,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TodayAdapter.TodayViewHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull TodayAdapter.TodayViewHolder holder, int position) {
         Lesson lesson = lessons.get(position);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         SimpleDateFormat timeFormat_month_day_year = new SimpleDateFormat("dd/MM/yyyy");
@@ -64,6 +67,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
             String date = timeFormat_month_day_year.format(teacherLessons.get(i).getDate());
             if (start.equals(timeFormat.format(lesson.getStart())) && date.equals(timeFormat_month_day_year.format(lesson.getDate()))) {
                 //show lesson details-> student name...
+                lesson.setLessonId(teacherLessons.get(i).getLessonId());
                 holder.studentName.setVisibility(View.VISIBLE);
                 holder.studentName.setText(teacherLessons.get(i).getStudentName());
 
@@ -76,26 +80,25 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lesson.setTeacherPhone(teacherPhone);
-                lesson.setStudentEmail(studentEmail);
-                firebaseFirestore.collection("lessons").add(lesson).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                firebaseFirestore.collection("lessons").document(lesson.getLessonId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if (task.isSuccessful()) {
-                            holder.studentName.setVisibility(View.VISIBLE);
-                            holder.cancel.setVisibility(View.VISIBLE);
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            holder.taken.setVisibility(View.VISIBLE);
+                            holder.cancel.setVisibility(View.GONE);
                         }
+
                     }
                 });
             }
         });
     }
 
-        //search teacher lessons
-        // show time
-        // if taken ->
-        //    show lesson details-> student name...
-        // modify choose to cancel
+    //search teacher lessons
+    // show time
+    // if taken ->
+    //    show lesson details-> student name...
+    // modify choose to cancel
 
 
     @Override
@@ -113,7 +116,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
             super(itemView);
             time = itemView.findViewById(R.id.time2);
             cancel = itemView.findViewById(R.id.cancel_button);
-            taken = itemView.findViewById(R.id.taken);
+            taken = itemView.findViewById(R.id.taken2);
             studentName = itemView.findViewById(R.id.todayStudentName);
         }
     }

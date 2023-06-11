@@ -1,9 +1,9 @@
 package com.example.myproject;
 
 import java.util.Date;
+import java.util.UUID;
 
-public class Lesson
-{
+public class Lesson {
     private String teacherPhone;
     private Date date;
     private Date start;
@@ -11,6 +11,16 @@ public class Lesson
     private int lessonDuration;
     private String studentEmail;
     private String studentName;
+
+    public String getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
+    }
+
+    private String lessonId;
 
     public Date getFinish() {
         return finish;
@@ -28,7 +38,11 @@ public class Lesson
         this.studentEmail = studentEmail;
         this.studentName = studentName;
     }
-    public Lesson(){}
+
+    public Lesson() {
+        this.lessonId = UUID.randomUUID().toString();
+    }
+
     public String getTeacherPhone() {
         return teacherPhone;
     }

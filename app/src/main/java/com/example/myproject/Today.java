@@ -30,15 +30,15 @@ public class Today extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
 
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today);
-            getDate();
-            CalendarView calendarView = findViewById(R.id.calendarView2);
-            date = new Date(calendarView.getDate());
-            calendarView.setMinDate(calendarView.getDate());
-        }
+        getDate();
+        CalendarView calendarView = findViewById(R.id.calendarView2);
+        date = new Date(calendarView.getDate());
+        calendarView.setMinDate(calendarView.getDate());
+    }
 
     public void getDate() {
         CalendarView calendarView = findViewById(R.id.calendarView2);
@@ -53,13 +53,14 @@ public class Today extends AppCompatActivity {
 
         calendarView.setDate(System.currentTimeMillis());
     }
+
     public void recyclerView(ArrayList<Lesson> lessons_array, ArrayList<Lesson> teacherLessons) {
         RecyclerView lessons = findViewById(R.id.RecyclerTodayLesson);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         lessons.setLayoutManager(layoutManager);
         TodayAdapter todayAdapter = new TodayAdapter(lessons_array, teacherLessons);
         //todayAdapter.setStudentEmail(MainActivity.student.getEmail());
-       //todayAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
+        //todayAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
         lessons.setAdapter(todayAdapter);
     }
 
@@ -72,7 +73,6 @@ public class Today extends AppCompatActivity {
         // Get current date and time
         Calendar calendar = Calendar.getInstance();
         Date currentDate = date;
-
 
 
         // Set initial start time
@@ -94,38 +94,35 @@ public class Today extends AppCompatActivity {
             lesson.setFinish(startTime);
         }
         if ((currentDate.getDay() + 1) == 7) {
-//            clearRecyclerView();
+            clearRecyclerView();
             Toast.makeText(this, "saturday", Toast.LENGTH_SHORT).show();
-        }
-        else
+        } else
             getTeacherDetails();
     }
 
     private void getTeacherDetails() {
         FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
         String email = fbUser.getEmail();
-        firebaseFirestore.collection("teachers").whereEqualTo("email",email).get()
+        firebaseFirestore.collection("teachers").whereEqualTo("email", email).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         Teacher teacher = queryDocumentSnapshots.getDocuments().get(0).toObject(Teacher.class);
                         getLessons(teacher);
-
                     }
                 });
 
     }
 
-//
-//    public void clearRecyclerView()
-//    {
-//        RecyclerView lessons = findViewById(R.id.RecyclerTodayLesson);
-//        lessons.setAdapter(null);
-//    }
 
-
-    public void getLessons(Teacher teacher)
+    public void clearRecyclerView()
     {
+        RecyclerView lessons = findViewById(R.id.RecyclerTodayLesson);
+        lessons.setAdapter(null);
+    }
+
+
+    public void getLessons(Teacher teacher) {
         firebaseFirestore.collection("lessons")
                 .whereEqualTo("teacherPhone", teacher.getPhone())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

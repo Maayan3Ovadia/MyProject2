@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         student = task.getResult().toObjects(Student.class).get(0);
                         Intent i = new Intent(MainActivity.this, StudentHomePage.class);
+                        i.putExtra("student", student);
                         startActivity(i);
 
                     }
@@ -129,14 +130,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void register(View view)
-    {
+    public void register(View view) {
 
     }
 
 
-    public void registerAsTeacher(View view)
-    {
+    public void registerAsTeacher(View view) {
 
     }
 }
