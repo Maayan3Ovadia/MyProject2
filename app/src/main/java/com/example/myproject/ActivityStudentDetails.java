@@ -35,6 +35,9 @@ public class ActivityStudentDetails extends AppCompatActivity {
 
             TextView tPhone = findViewById(R.id.textPhone);
             tPhone.setText(tPhone.getText()+" "+s.getPhone());
+
+
+
         }
     }
 }

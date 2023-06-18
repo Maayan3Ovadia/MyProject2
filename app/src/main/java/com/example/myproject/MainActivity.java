@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         if (fbUser != null) {
             moveToActivity();
         }
-
     }
 
     //String listview = findViewById<ListView>(R.id.myListView)

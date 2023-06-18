@@ -16,6 +16,7 @@ public class Student implements Serializable
     private String teacherName;
     private String teacherPhone;
     private int nextLesson;
+    private int paid;
 
     public Student(String name, String userName, String password, String email, String phone, String id, boolean teoria, String address, int currentLesson, int nextLesson)
     {
@@ -31,6 +32,7 @@ public class Student implements Serializable
         this.nextLesson = nextLesson;
         this.teacherName="";
         this.teacherPhone="";
+        this.paid = 0;
     }
 
     public Student()
@@ -80,6 +82,10 @@ public class Student implements Serializable
 
     public String getName() {
         return name;
+    }
+
+    public int getPaid() {
+        return paid;
     }
 
     public void setName(String name) {
@@ -132,5 +138,9 @@ public class Student implements Serializable
 
     public void setNextLesson(int nextLesson) {
         this.nextLesson = nextLesson;
+    }
+
+    public void setPaid(int paid) {
+        this.paid = paid;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.myproject;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,8 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
     private ArrayList<Lesson> teacherLessons;
     private String teacherPhone;
     private String studentEmail;
+
+    private Context c;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
 
@@ -41,9 +45,10 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
         this.studentEmail = studentEmail;
     }
 
-    public TodayAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons) {
+    public TodayAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons,Context c) {
         this.lessons = lessons;
         this.teacherLessons = teacherLessons;
+        this.c =c;
     }
 
     @NonNull
@@ -76,6 +81,30 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
 
             }
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 1. show dialog - requesting the amount paid
+                // 2. update in firebase the paid and the num of lessons
+                Dialog dialog = new Dialog(c);
+                dialog.setContentView(R.layout.alert_dialog_layout);
+                dialog.show();
+
+                Button ok = dialog.findViewById(R.id.button_ok);
+                Button no = dialog.findViewById(R.id.button_ok);
+
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //
+                        //dialog.findViewById()
+                                //לקרוא את המידע ולהעלות לפיירבייס
+                    }
+                });
+
+            }
+        });
         holder.time.setText(timeFormat.format(lesson.getStart()) + "-" + timeFormat.format(lesson.getFinish()));
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override

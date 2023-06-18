@@ -58,7 +58,7 @@ public class Today extends AppCompatActivity {
         RecyclerView lessons = findViewById(R.id.RecyclerTodayLesson);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         lessons.setLayoutManager(layoutManager);
-        TodayAdapter todayAdapter = new TodayAdapter(lessons_array, teacherLessons);
+        TodayAdapter todayAdapter = new TodayAdapter(lessons_array, teacherLessons,this);
         //todayAdapter.setStudentEmail(MainActivity.student.getEmail());
         //todayAdapter.setTeacherPhone(MainActivity.student.getTeacherPhone());
         lessons.setAdapter(todayAdapter);
