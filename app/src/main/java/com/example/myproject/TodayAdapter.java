@@ -2,27 +2,29 @@ package com.example.myproject;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Map;
 
 //
 
@@ -45,10 +47,10 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
         this.studentEmail = studentEmail;
     }
 
-    public TodayAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons,Context c) {
+    public TodayAdapter(ArrayList<Lesson> lessons, ArrayList<Lesson> teacherLessons, Context c) {
         this.lessons = lessons;
         this.teacherLessons = teacherLessons;
-        this.c =c;
+        this.c = c;
     }
 
     @NonNull
@@ -66,45 +68,62 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
         Lesson lesson = lessons.get(position);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         SimpleDateFormat timeFormat_month_day_year = new SimpleDateFormat("dd/MM/yyyy");
-
         for (int i = 0; i < teacherLessons.size(); i++) {
-            String start = timeFormat.format(teacherLessons.get(i).getStart());
-            String date = timeFormat_month_day_year.format(teacherLessons.get(i).getDate());
-            if (start.equals(timeFormat.format(lesson.getStart())) && date.equals(timeFormat_month_day_year.format(lesson.getDate()))) {
-                //show lesson details-> student name...
-                lesson.setLessonId(teacherLessons.get(i).getLessonId());
-                holder.studentName.setVisibility(View.VISIBLE);
-                holder.studentName.setText(teacherLessons.get(i).getStudentName());
+            Lesson currentLesson = teacherLessons.get(i);
+            String startTime = timeFormat.format(currentLesson.getStart());
+            String lessonDate = timeFormat_month_day_year.format(currentLesson.getDate());
 
+            if (startTime.equals(timeFormat.format(lesson.getStart())) && lessonDate.equals(timeFormat_month_day_year.format(lesson.getDate()))) {
+                // Show lesson details - student name, etc.
+                lesson.setLessonId(currentLesson.getLessonId());
+                holder.studentName.setVisibility(View.VISIBLE);
+                holder.studentName.setText(currentLesson.getStudentName());
                 holder.cancel.setVisibility(View.VISIBLE);
 
-
-            }
-        }
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 1. show dialog - requesting the amount paid
-                // 2. update in firebase the paid and the num of lessons
-                Dialog dialog = new Dialog(c);
-                dialog.setContentView(R.layout.alert_dialog_layout);
-                dialog.show();
-
-                Button ok = dialog.findViewById(R.id.button_ok);
-                Button no = dialog.findViewById(R.id.button_ok);
-
-                ok.setOnClickListener(new View.OnClickListener() {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //
-                        //dialog.findViewById()
-                                //לקרוא את המידע ולהעלות לפיירבייס
+                        // Show dialog for requesting the amount paid
+                        Dialog dialog = new Dialog(c);
+                        dialog.setContentView(R.layout.alert_dialog_layout);
+                        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+                        Button buttonOk = dialog.findViewById(R.id.button_ok);
+                        EditText editTextPaid = dialog.findViewById(R.id.paid);
+
+                        buttonOk.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String price = editTextPaid.getText().toString();
+                                int amountPaid = Integer.parseInt(price);
+
+                                firebaseFirestore.collection("students")
+                                        .whereEqualTo("email", currentLesson.getStudentEmail())
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                                    String documentId = documentSnapshot.getId();
+                                                    Map<String, Object> studentData = documentSnapshot.getData();
+                                                    long paid = (long) studentData.get("paid");
+                                                    int currentPaid = Math.toIntExact(paid);
+                                                    int updatedPaid = currentPaid + amountPaid;
+
+                                                    firebaseFirestore.collection("students")
+                                                            .document(documentId)
+                                                            .update("paid", updatedPaid);
+                                                }
+                                            }
+                                        });
+                            }
+                        });
+
+                        dialog.show();
                     }
                 });
-
             }
-        });
+        }
         holder.time.setText(timeFormat.format(lesson.getStart()) + "-" + timeFormat.format(lesson.getFinish()));
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +131,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
                 firebaseFirestore.collection("lessons").document(lesson.getLessonId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             holder.taken.setVisibility(View.VISIBLE);
                             holder.cancel.setVisibility(View.GONE);
                         }

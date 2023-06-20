@@ -1,26 +1,13 @@
 package com.example.myproject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 
 public class StudentHomePage extends AppCompatActivity {
 
@@ -36,7 +23,18 @@ public class StudentHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_page);
         me = (Student) (getIntent().getSerializableExtra("student"));
-//כל התכונות מועברות באקטרה ליצור עצם מסוג תלמיד באמצעות כל התכונות
+
+        updateDataInPage();
+
+    }
+
+    private void updateDataInPage() {
+        TextView teacherName = findViewById(R.id.teacher_name);
+        TextView lessonNum = findViewById(R.id.numLessons);
+        TextView nextLesson = findViewById(R.id.nextLesson);
+        teacherName.setText(me.getTeacherName());
+        lessonNum.setText("" + me.getCurrentLesson());
+        nextLesson.setText("" + me.getNextLesson());
     }
 
 
