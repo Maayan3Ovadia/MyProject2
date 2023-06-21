@@ -90,11 +90,14 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
 
                         Button buttonOk = dialog.findViewById(R.id.button_ok);
                         EditText editTextPaid = dialog.findViewById(R.id.paid);
+                        EditText editTextTeacher = dialog.findViewById(R.id.teacherText);
 
                         buttonOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 String price = editTextPaid.getText().toString();
+                                String teacherText = editTextTeacher.getText().toString();
+
                                 int amountPaid = Integer.parseInt(price);
 
                                 firebaseFirestore.collection("students")
@@ -113,6 +116,10 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
                                                     firebaseFirestore.collection("students")
                                                             .document(documentId)
                                                             .update("paid", updatedPaid);
+
+                                                    firebaseFirestore.collection("students")
+                                                            .document(documentId)
+                                                            .update("textTeacher", teacherText);
                                                 }
                                             }
                                         });
@@ -120,6 +127,8 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.TodayViewHol
                         });
 
                         dialog.show();
+
+                       // dialog.cancel();
                     }
                 });
             }

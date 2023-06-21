@@ -122,10 +122,17 @@ public class choose_teacher extends AppCompatActivity {
         fb.collection("students").whereEqualTo("email",email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                Student student = null;
                 if (task.isSuccessful())
                 {
                     for (QueryDocumentSnapshot document : task.getResult()) {
+
+                        student = document.toObject(Student.class);
+                        student.setTeacherPhone(currentTeacher.getPhone());
+                        student.setTeacherName(currentTeacher.getName());
                         document.getReference().update("teacherName",currentTeacher.getName());
+                        Student finalStudent = student;
                         document.getReference().update("teacherPhone",currentTeacher.getPhone()).addOnCompleteListener(new OnCompleteListener<Void>() {
 
 
@@ -138,6 +145,7 @@ public class choose_teacher extends AppCompatActivity {
                                 editor.apply();
 
                                 Intent i = new Intent(choose_teacher.this,StudentHomePage.class);
+                                i.putExtra("student", finalStudent);
                                 startActivity(i);
                             }
                         });
@@ -147,6 +155,7 @@ public class choose_teacher extends AppCompatActivity {
                             }
                 }
             });
+        //סינון
         //להראות לתלמיד רשימה של המורים רק אוטומוט/ידני
         //אם תלמיד רוצה ללמוד ידני/אוטומט, ברשימת המורים יהיו רק מורים שמלמדים על ידני
         //מורים לפי עיר

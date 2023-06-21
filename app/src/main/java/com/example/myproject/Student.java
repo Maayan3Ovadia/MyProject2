@@ -17,6 +17,7 @@ public class Student implements Serializable
     private String teacherPhone;
     private int nextLesson;
     private int paid;
+    private String textTeacher;
 
     public Student(String name, String userName, String password, String email, String phone, String id, boolean teoria, String address, int currentLesson, int nextLesson)
     {
@@ -33,6 +34,7 @@ public class Student implements Serializable
         this.teacherName="";
         this.teacherPhone="";
         this.paid = 0;
+        this.textTeacher = "";
     }
 
     public Student()
@@ -142,5 +144,13 @@ public class Student implements Serializable
 
     public void setPaid(int paid) {
         this.paid = paid;
+    }
+
+    public String getTextTeacher() {
+        return textTeacher;
+    }
+
+    public void setTextTeacher(String textTeacher) {
+        this.textTeacher = textTeacher;
     }
 }

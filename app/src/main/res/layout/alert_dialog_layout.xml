@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView11"
@@ -22,16 +22,18 @@
         app:layout_constraintVertical_bias="0.037" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paid">
+        app:layout_constraintTop_toBottomOf="@+id/paid"
+        app:layout_constraintVertical_bias="0.157">
 
 
         <Button
@@ -58,12 +60,35 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
+        android:breakStrategy="simple"
         android:ems="10"
         android:hint="כמה שולם"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/teacherText"
+        android:layout_width="370dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="הערות לתלמיד"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="6"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.407" />
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
