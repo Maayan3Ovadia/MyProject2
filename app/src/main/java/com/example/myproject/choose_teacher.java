@@ -80,8 +80,9 @@ public class choose_teacher extends AppCompatActivity {
                 // upload to firebase///
 
                 Toast.makeText(choose_teacher.this, currentTeacher.getName(), Toast.LENGTH_SHORT).show();
-                dialog.cancel();
                 setTeacherInFirebase(currentTeacher);
+
+                dialog.cancel();
 
             }
             }
@@ -131,9 +132,27 @@ public class choose_teacher extends AppCompatActivity {
                         student = document.toObject(Student.class);
                         student.setTeacherPhone(currentTeacher.getPhone());
                         student.setTeacherName(currentTeacher.getName());
-                        document.getReference().update("teacherName",currentTeacher.getName());
-                        Student finalStudent = student;
-                        document.getReference().update("teacherPhone",currentTeacher.getPhone()).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        final Student cStudent = student;
+                        document.getReference().set(student).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+
+                                Toast.makeText(choose_teacher.this,"Choice success",Toast.LENGTH_SHORT).show();
+                                SharedPreferences sp = choose_teacher.this.getSharedPreferences("details",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("teacherPhone", currentTeacher.getPhone());
+                                editor.apply();
+
+                                Intent i = new Intent(choose_teacher.this,StudentHomePage.class);
+                                i.putExtra("student", cStudent);
+                                startActivity(i);
+
+                            }
+                        });
+                     /*   document.getReference().update("teacherName",currentTeacher.getName());
+                       Student finalStudent = student;
+                       document.getReference().update("teacherPhone",currentTeacher.getPhone()).addOnCompleteListener(new OnCompleteListener<Void>() {
 
 
                             @Override
@@ -149,6 +168,8 @@ public class choose_teacher extends AppCompatActivity {
                                 startActivity(i);
                             }
                         });
+
+                      */
 
                     }
 

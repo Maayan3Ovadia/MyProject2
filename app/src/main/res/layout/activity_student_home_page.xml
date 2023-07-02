@@ -161,7 +161,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:gravity="center"
-        android:text="הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות הערות "
+        android:text="הערות...."
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
